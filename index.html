@@ -60,7 +60,7 @@ function sendEmail() {
     }
   }
   console.log(payload);
-  http.send(payload);
+  http.send(JSON.stringify(payload));
   return false;
 
 }
@@ -238,7 +238,7 @@ function sendEmail() {
         <p><span class="glyphicon glyphicon-envelope"></span>aruvibakerysweets@gmail.com</p>
       </div>
       <div class="col-sm-7 slideanim">
-          <form name="myForm" onsubmit="sendEmail()" method="post">
+          <form name="myForm" onsubmit="return sendEmail()" method="post">
         <div class="row">
           <div class="col-sm-6 form-group">
 
