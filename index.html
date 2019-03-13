@@ -21,21 +21,50 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 
-function validateForm() {
-  var x = document.forms["myForm"]["fname"].value;
-  if (x === "") {
+function sendEmail() {
+  
+  var name = document.forms["myForm"]["fname"].value;
+  var email = document.forms["myForm"]["email"].value;
+  var comments = document.forms["myForm"]["comments"].value;
+  if (name === "") {
     alert("Name must be filled out");
     return false;
   }
-
-  function validateForm() {
-  var y = document.forms["myForm"]["email"].value;
-  if (y === "") {
-    alert("email must be filled out");
+  if (email === "") {
+    alert("Email must be filled out");
+    return false;
+  }
+  if (comments === "") {
+    alert("Comments must be filled out");
     return false;
   }
 
+  const payload = {
+    "to": "gopinathangusamy2@gmail.com",
+    "from": email,
+    "subject": "New Contact request for Aruvi Bakery",
+    "text": comments,
+    "html": comments
+  }
+
+  var http = new XMLHttpRequest();
+  var url = 'https://aruvi-bakery-server.herokuapp.com/sendemail';
+  http.open('POST', url, true);
+
+  //Send the proper header information along with the request
+  http.setRequestHeader('Content-type', 'application/json');
+
+  http.onreadystatechange = function () {//Call a function when the state changes.
+    if (http.readyState == 4 && http.status == 200) {
+      alert('Email Sent.');
+    }
+  }
+  console.log(payload);
+  http.send(payload);
+  return false;
+
 }
+
 </script>
 </head>
 <body style="font-family: 'Indie Flower';font-size: 22px;"> 
@@ -209,7 +238,7 @@ function validateForm() {
         <p><span class="glyphicon glyphicon-envelope"></span>aruvibakerysweets@gmail.com</p>
       </div>
       <div class="col-sm-7 slideanim">
-          <form name="myForm" onsubmit="return validateForm()" method="post" action="/action_page.php">
+          <form name="myForm" onsubmit="sendEmail()" method="post">
         <div class="row">
           <div class="col-sm-6 form-group">
 
@@ -222,7 +251,7 @@ function validateForm() {
         <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
         <div class="row">
           <div class="col-sm-12 form-group">
-            <button class="btn btn-default pull-right" type="submit" >Send</button>
+            <button class="btn btn-default pull-right" type="submit">Send</button>
           </div>
         </div>
       </form>
