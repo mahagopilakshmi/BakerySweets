@@ -1,234 +1,250 @@
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <title></title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="jquery.min.js"></script>
-    <script src="scriptjs"></script>
-    <link href="default.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="fonts.css" rel="stylesheet" type="text/css" media="all" />
-    <link href='https://fonts.googleapis.com/css?family=Indie Flower' rel='stylesheet'>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script>
+<!DOCTYPE html>
+<html lang="en">
 
-function sendEmail() {
-  
-  var name = document.forms["myForm"]["fname"].value;
-  var email = document.forms["myForm"]["email"].value;
-  var comments = document.forms["myForm"]["comments"].value;
-  if (name === "") {
-    alert("Name must be filled out");
-    return false;
-  }
-  if (email === "") {
-    alert("Email must be filled out");
-    return false;
-  }
-  if (comments === "") {
-    alert("Comments must be filled out");
-    return false;
-  }
+<head>
+  <title>Aruvi Bakery Sweets</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="jquery.min.js"></script>
+  <script src="scriptjs"></script>
+  <link href="default.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="fonts.css" rel="stylesheet" type="text/css" media="all" />
+  <link href='https://fonts.googleapis.com/css?family=Indie Flower' rel='stylesheet'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"
+    integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
 
-  const payload = {
-    "to": "gopinathangusamy2@gmail.com",
-    "from": email,
-    "subject": "New Contact request for Aruvi Bakery",
-    "text": comments,
-    "html": comments
-  }
+    function sendEmail() {
 
-  var http = new XMLHttpRequest();
-  var url = 'https://aruvi-bakery-server.herokuapp.com/sendemail';
-  http.open('POST', url, true);
+      var name = document.forms["myForm"]["fname"].value;
+      var email = document.forms["myForm"]["email"].value;
+      var comments = document.forms["myForm"]["comments"].value;
+      if (name === "") {
+        alert("Name must be filled out");
+        return false;
+      }
+      if (email === "") {
+        alert("Email must be filled out");
+        return false;
+      }
+      if (comments === "") {
+        alert("Comments must be filled out");
+        return false;
+      }
 
-  //Send the proper header information along with the request
-  http.setRequestHeader('Content-type', 'application/json');
+      const payload = {
+        "to": "gopinathangusamy2@gmail.com",
+        "from": email,
+        "subject": "New Contact request for Aruvi Bakery",
+        "text": comments,
+        "html": comments
+      }
 
-  http.onreadystatechange = function () {//Call a function when the state changes.
-    if (http.readyState == 4 && http.status == 200) {
-      alert('Email Sent.');
+      var http = new XMLHttpRequest();
+      var url = 'https://aruvi-bakery-server.herokuapp.com/sendemail';
+      http.open('POST', url, true);
+
+      //Send the proper header information along with the request
+      http.setRequestHeader('Content-type', 'application/json');
+
+      http.onreadystatechange = function () {//Call a function when the state changes.
+        if (http.readyState == 4 && http.status == 200) {
+          alert('Email Sent.');
+        }
+      }
+      console.log(payload);
+      http.send(JSON.stringify(payload));
+      return false;
+
     }
-  }
-  console.log(payload);
-  http.send(JSON.stringify(payload));
-  return false;
 
-}
-
-</script>
+  </script>
 </head>
-<body style="font-family: 'Indie Flower';font-size: 22px;"> 
-  <nav class="topbar" style="background: black;padding: 0;margin-bottom: 0.5%;border: 0.5pt gray solid;height:40px;width:100%">
-  <p style="margin-left:20%; margin-top:0.5%;color:white;font-family:'Courier New', Courier, monospace">PHONE-NO: 8220015555 &nbsp;&nbsp;&nbsp;&nbsp; EMAIL: aruvibakerysweets@gmail.com</p>
-</nav>
-<nav class="navbar navbar-expand-sm ">
- 
+
+<body style="font-family: 'Indie Flower';font-size: 22px;">
+  <nav class="topbar"
+    style="background: black;padding: 0;margin-bottom: 0.5%;border: 0.5pt gray solid;height:40px;width:100%">
+    <p style="margin-left:20%; margin-top:0.5%;color:white;font-family:'Courier New', Courier, monospace">PHONE-NO:
+      8220015555 &nbsp;&nbsp;&nbsp;&nbsp; EMAIL: aruvibakerysweets@gmail.com</p>
+  </nav>
+  <nav class="navbar navbar-expand-sm ">
+
     <a class="navbar-brand" href="#">
       <img src="images/Artboard.jpg" alt="logo">
     </a>
-    <ul class="nav justify-content-end" style="margin-left:15%;margin-top:5%" >
-        <li class="nav-item" >
-          <a class="nav-link" href="#">Homepage</a>
-        </li>
-        <li class="nav-item">
-          <a style ="font-size:100%" class="nav-link" href="#gallery">Gallery</a>
-        </li>
-        <li class="nav-item">
-          <a style ="font-size:100%" class="nav-link" href="#about">Product Categories</a>
-        </li>
-        <li class="nav-item">
-            <a style ="font-size:100%" class="nav-link" href="#contact">Contact Us</a>
-        </li>
-      </ul>
+    <ul class="nav justify-content-end" style="margin-left:15%;margin-top:5%">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Homepage</a>
+      </li>
+      <li class="nav-item">
+        <a style="font-size:100%" class="nav-link" href="#gallery">Gallery</a>
+      </li>
+      <li class="nav-item">
+        <a style="font-size:100%" class="nav-link" href="#about">Product Categories</a>
+      </li>
+      <li class="nav-item">
+        <a style="font-size:100%" class="nav-link" href="#contact">Contact Us</a>
+      </li>
+    </ul>
   </nav>
-    <nav class="topbar" style="padding: 0;margin-bottom: 0.5%;height:40px;width:100%"></nav>
- 
-</nav>
+  <nav class="topbar" style="padding: 0;margin-bottom: 0.5%;height:40px;width:100%"></nav>
 
-<div id="demo" class="carousel slide" data-ride="carousel">
+  </nav>
 
-  <!-- Indicators -->
-  <ul class="carousel-indicators">
-    <li data-target="#demo" data-slide-to="0" class="active"></li>
-    <li data-target="#demo" data-slide-to="1"></li>
-    <li data-target="#demo" data-slide-to="2"></li>
-  </ul>
-  
-  <!-- The slideshow -->
-  <div class="carousel-inner" >
-    <div class="carousel-item active" >
-      <img src="images/SLIDE-IMAGE.jpg" alt="slide cakes" width="1908" height="600">
-      <div class="carousel-caption d-none d-md-block">
-          <h2 class="display-4" style="color:	white">Welcome to ARUVI Bakery </h2> 
-          <h3  style="color:	yellow" >Get into the heaven of pasteries</h3>
-      
+  <div id="demo" class="carousel slide" data-ride="carousel">
+
+    <!-- Indicators -->
+    <ul class="carousel-indicators">
+      <li data-target="#demo" data-slide-to="0" class="active"></li>
+      <li data-target="#demo" data-slide-to="1"></li>
+      <li data-target="#demo" data-slide-to="2"></li>
+    </ul>
+
+    <!-- The slideshow -->
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="images/SLIDE-IMAGE.jpg" alt="slide cakes" width="1908" height="600">
+        <div class="carousel-caption d-none d-md-block">
+          <h2 class="display-4" style="color:	white">Welcome to ARUVI Bakery </h2>
+          <h3 style="color:	yellow">Get into the heaven of pasteries</h3>
+
+        </div>
+        <!-- <p class="lead"></p>-->
       </div>
-      <!-- <p class="lead"></p>-->
+      <div class="carousel-item">
+        <img src="images/SLIDE-IMAGE-3.jpg" alt="HappyBirthday" width="1908" height="600">
+        <div class="carousel-caption d-none d-md-block">
+          <h2 class="display-4" style="color:	#FFDEAD;margin-right:100%;margin-bottom:13%">We make custom cakes for
+            birthday </h2>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="images/tea.jpeg" alt="Cakes" width="1908" height="600">
+      </div>
     </div>
-    <div class="carousel-item">
-      <img src="images/SLIDE-IMAGE-3.jpg" alt="HappyBirthday" width="1908" height="600">
-      <div class="carousel-caption d-none d-md-block">
-          <h2 class="display-4" style="color:	#FFDEAD;margin-right:100%;margin-bottom:13%" >We make custom cakes for birthday </h2> 
-          </div>
-    </div>
-    <div class="carousel-item">
-      <img src="images/tea.jpeg" alt="Cakes" width="1908" height="600">
-    </div>
+    <!-- Left and right controls -->
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </a>
   </div>
-  <!-- Left and right controls -->
-  <a class="carousel-control-prev" href="#demo" data-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
-  </a>
-  <a class="carousel-control-next" href="#demo" data-slide="next">
-    <span class="carousel-control-next-icon"></span>
-  </a>
-</div>
 
-<div style="text-align:center;margin-top:-90px">
-  <span class="dot"></span> 
-  <span class="dot"></span> 
-  <span class="dot"></span> 
-</div>
-</div> <br><br><br>
+  <div style="text-align:center;margin-top:-90px">
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+  </div> <br><br><br>
 
-      <div class="container container-enhance"> 
-        
-          <div class="gallery" id="gallery" style="margin-top: 0px"></div>
-          <nav class="topbar" style="padding: 0;margin-bottom: 0.5%;height:40px;width:100%">
-    
-            </nav>	
-           <h1 	style	="color:black;font-size:50px">Gallery</h1> <br><br>
-          <div class="row">
-            <div class="col-sm-4">
-              <div class="panel panel-warning">
-                <div class="panel-heading">BIRTHDAY CAKES</div>
-                <div class="panel-body"><img src="images/BIRTHDAY CAKES.jpg" class="img-responsive" style="width:100%" alt="Image"></div>
-              </div>
-            </div>
-            <div class="col-sm-4"> 
-              <div class="panel panel-warning">
-                <div class="panel-heading">MILK SHAKES</div>
-                <div class="panel-body"><img src="images/MILK-SHAKES-.jpg" class="img-responsive" style="width:100%" alt="Image"></div>
-              </div>
-            </div>
-            <div class="col-sm-4"> 
-              <div class="panel panel-warning">
-                <div class="panel-heading">SNACKS</div>
-                <div class="panel-body"><img src="images/SNACKS.jpg" class="img-responsive" style="width:100%" alt="Image"></div>
-              </div>
-            </div>
+  <div class="container container-enhance">
+
+    <div class="gallery" id="gallery" style="margin-top: 0px"></div>
+    <nav class="topbar" style="padding: 0;margin-bottom: 0.5%;height:40px;width:100%">
+
+    </nav>
+    <h1 style="color:black;font-size:50px">Gallery</h1> <br><br>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="panel panel-warning">
+          <div class="panel-heading">BIRTHDAY CAKES</div>
+          <div class="panel-body"><img src="images/BIRTHDAY CAKES.jpg" class="img-responsive" style="width:100%"
+              alt="Image"></div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="panel panel-warning">
+          <div class="panel-heading">MILK SHAKES</div>
+          <div class="panel-body"><img src="images/MILK-SHAKES-.jpg" class="img-responsive" style="width:100%"
+              alt="Image"></div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="panel panel-warning">
+          <div class="panel-heading">SNACKS</div>
+          <div class="panel-body"><img src="images/SNACKS.jpg" class="img-responsive" style="width:100%" alt="Image">
           </div>
-        </div><br>
-        
-        <div class="container container-enhance">    
-          <div class="row">
-            <div class="col-sm-4">
-              <div class="panel panel-warning">
-                  <div class="panel-heading">SWEETS</div>
-                <div class="panel-body"><img src="images/SWEETS.jpg" class="img-responsive" style="width:100%" alt="Image"></div>
-              </div>
-            </div>
-            <div class="col-sm-4"> 
-              <div class="panel panel-warning">
-                <div class="panel-heading">CAKES</div>
-                <div class="panel-body"><img src="images/WEDDING-CAKES.jpg" class="img-responsive" style="width:100%" alt="Image"></div>
-              </div>
-            </div>
-            <div class="col-sm-4"> 
-              <div class="panel panel-warning">
-                <div class="panel-heading">BAKERY PRODUCTS</div>
-                <div class="panel-body"><img src="images/BAKERY-PRODUCTS.jpg" class="img-responsive" style="width:100%" alt="Image"></div>
-                <!-- <div class="panel-footer">Buy 50 mobiles and get a gift card</div> -->
-              </div>
-            </div>
+        </div>
+      </div>
+    </div><br>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="panel panel-warning">
+          <div class="panel-heading">SWEETS</div>
+          <div class="panel-body"><img src="images/SWEETS.jpg" class="img-responsive" style="width:100%" alt="Image">
           </div>
-        </div><br>
-      
-<seaction>
-  <div class = "container" id="about">
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="panel panel-warning">
+          <div class="panel-heading">CAKES</div>
+          <div class="panel-body"><img src="images/WEDDING-CAKES.jpg" class="img-responsive" style="width:100%"
+              alt="Image"></div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="panel panel-warning">
+          <div class="panel-heading">BAKERY PRODUCTS</div>
+          <div class="panel-body"><img src="images/BAKERY-PRODUCTS.jpg" class="img-responsive" style="width:100%"
+              alt="Image"></div>
+          <!-- <div class="panel-footer">Buy 50 mobiles and get a gift card</div> -->
+        </div>
+      </div>
+    </div>
+  </div><br>
 
-        <b><nav class="topbar" style="padding: 0;margin-bottom: 0.5%;height:40px;width:100%">
-            
+  <seaction>
+    <div class="container" id="about">
+
+      <b>
+        <nav class="topbar" style="padding: 0;margin-bottom: 0.5%;height:40px;width:100%">
+
         </nav>
-      <h1 style	="color:black;font-size:50px">Product Categories</h1> <br><br>
-    <div class = "row main algin-items-center">
-<div class ="col-md-6 image-element ">
-  <div class = "img-wrap">
+        <h1 style="color:black;font-size:50px">Product Categories</h1> <br><br>
+        <div class="row main algin-items-center">
+          <div class="col-md-6 image-element ">
+            <div class="img-wrap">
 
-      <img src="images/MENU.jpg" style="width:600px;height:600px">
-  </div>
-</div>
-<div class="col-md-6 text-element">
-    <div class="text-content">
-        
-        <h2 class="mbr-title pt-2 mbr-fonts-style align-left display-2" style ="font-size:30px;font-weight: 900">About Aruvi Bakery & Sweets</h2>
-        <div class="mbr-section-text">
-            <p class="mbr-text pt-3 mbr-light mbr-fonts-style align-left display-7">
-                Aruvi Bakery is Located in Perumal Puram, Palayankottai in Tirunelveli, it is an ancient city and is more than 2000 years old. The city is located on the west bank of the Thamirabarani River.
-                In these days of mass production, it is rare to find a bakery that devotes itself to quality over quality.
-                Aruvi Bakery uses only quality ingredients. All of our cakes are made from scratch with the finest ingredients, providing you with cakes of higher quality.
-                Aruvi Bakery unique creations including Traditional tiered cakes, fresh cream cakes, wedding cakes, birthday cakes, Bread, Biscuits, sweets and snacks. Every Aruvi Bakery  Products are produce from the Heart and its shows the taste as good as it looks.</p>
+              <img src="images/MENU.jpg" style="width:600px;height:600px">
+            </div>
+          </div>
+          <div class="col-md-6 text-element">
+            <div class="text-content">
+
+              <h2 class="mbr-title pt-2 mbr-fonts-style align-left display-2" style="font-size:30px;font-weight: 900">
+                About Aruvi Bakery & Sweets</h2>
+              <div class="mbr-section-text">
+                <p class="mbr-text pt-3 mbr-light mbr-fonts-style align-left display-7">
+                  Aruvi Bakery is Located in Perumal Puram, Palayankottai in Tirunelveli, it is an ancient city and is
+                  more than 2000 years old. The city is located on the west bank of the Thamirabarani River.
+                  In these days of mass production, it is rare to find a bakery that devotes itself to quality over
+                  quality.
+                  Aruvi Bakery uses only quality ingredients. All of our cakes are made from scratch with the finest
+                  ingredients, providing you with cakes of higher quality.
+                  Aruvi Bakery unique creations including Traditional tiered cakes, fresh cream cakes, wedding cakes,
+                  birthday cakes, Bread, Biscuits, sweets and snacks. Every Aruvi Bakery Products are produce from the
+                  Heart and its shows the taste as good as it looks.</p>
+              </div>
+            </div>
+          </div>
+
         </div>
     </div>
-</div>
-
-    </div>
-  </div>
   </seaction>
-</seaction> <br><br>
+  </seaction> <br><br>
 
-<div id = "contact" class="container-fluid ">
-    <h1 style	="color:black;font-size:50px">Contact us</h1><br><br>
+  <div id="contact" class="container-fluid ">
+    <h1 style="color:black;font-size:50px">Contact us</h1><br><br>
     <div class="row">
       <div class="col-sm-5">
         <p>Contact us we will get back to you immediately</p>
@@ -238,49 +254,52 @@ function sendEmail() {
         <p><span class="glyphicon glyphicon-envelope"></span>aruvibakerysweets@gmail.com</p>
       </div>
       <div class="col-sm-7 slideanim">
-          <form name="myForm" onsubmit="return sendEmail()" method="post">
-        <div class="row">
-          <div class="col-sm-6 form-group">
+        <form name="myForm" onsubmit="return sendEmail()" method="post">
+          <div class="row">
+            <div class="col-sm-6 form-group">
 
-            <input class="form-control" id="name" name="fname" placeholder="Name" type="text">
+              <input class="form-control" id="name" name="fname" placeholder="Name" type="text">
+            </div>
+            <div class="col-sm-6 form-group">
+              <input class="form-control" id="email" name="email" placeholder="Email" type="email">
+            </div>
           </div>
-          <div class="col-sm-6 form-group">
-            <input class="form-control" id="email" name="email" placeholder="Email" type="email">
+          <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
+          <div class="row">
+            <div class="col-sm-12 form-group">
+              <button class="btn btn-default pull-right" type="submit">Send</button>
+            </div>
           </div>
-        </div>
-        <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
-        <div class="row">
-          <div class="col-sm-12 form-group">
-            <button class="btn btn-default pull-right" type="submit">Send</button>
-          </div>
-        </div>
-      </form>
+        </form>
       </div>
     </div>
-</div>
+  </div>
 
-<section id="contact">
-<div class="container container-enhance">
-    <!-- <div class="well well-sm"> -->
-      <h1 style	="color:black;font-size:35px">Find us at and get best offers</h1><br><br>
+  <section id="contact">
+    <div class="container container-enhance">
+      <!-- <div class="well well-sm"> -->
+      <h1 style="color:black;font-size:35px">Find us at and get best offers</h1><br><br>
     </div>
-	
-	<div class="container container-enhance">
-	  <div class="col-md-7">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d3736489.7218514383!2d90.21589792292741!3d23.857125486636733!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1506502314230" width="100%" height="315" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+    <div class="container container-enhance">
+      <div class="col-md-7">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3943.9258401874476!2d77.73659671493361!3d8.698592796470926!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0413f06a83ae3f%3A0xef573034e4938fd8!2sAruvi+Bakery!5e0!3m2!1sen!2sin!4v1552548600586"
+          width="100%" height="315" frameborder="0" style="border:0" allowfullscreen></iframe>
       </div>
 
-<div class="col-md-5">
-    <h3 style	="color:black"><strong>Get in touch for free offers</strong></h3>
-    <h4> We find pleasure in providing yummy pasteries, sweets and milkshakes.<br> Be there with us to know about our exciting offers.<br> Don't miss out the fun..!!  </h4>
-</div>
+      <div class="col-md-5">
+        <h3 style="color:black"><strong>Get in touch for free offers</strong></h3>
+        <h4> We find pleasure in providing yummy pasteries, sweets and milkshakes.<br> Be there with us to know about
+          our exciting offers.<br> Don't miss out the fun..!! </h4>
+      </div>
 
-</div>
-</div><br>
+    </div>
+    </div><br>
 
-</section>
-<!-- Footer -->
-<footer class="page-footer font-small cyan darken-3">
+  </section>
+  <!-- Footer -->
+  <footer class="page-footer font-small cyan darken-3">
 
     <!-- Footer Elements -->
     <div class="container">
@@ -289,7 +308,7 @@ function sendEmail() {
       <div class="row">
 
         <!-- Grid column -->
-        <div class="col-md-12 py-5"  style="margin-left: 45%">
+        <div class="col-md-12 py-5" style="margin-left: 45%">
           <div class="mb-5 flex-center">
 
             <!-- Facebook -->
@@ -313,7 +332,7 @@ function sendEmail() {
 
     </div>
     <!-- Footer Elements -->
-y
+    y
     <!-- Copyright -->
     <div style="margin-left: 40%; margin-top:-5%">© 2019 Copyright:
       <a href="#"> aruvibakerysweets.com</a>

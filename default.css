@@ -53,6 +53,11 @@
     background-color: #f6f6f6;
   }
 
+  .panel-body:hover img {
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+} 
+
     .navbar-nav{
         margin-top:2%;
     }
