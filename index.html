@@ -5,10 +5,10 @@
   <title>Aruvi Bakery Sweets</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="jquery.min.js"></script>
-  <script src="scriptjs"></script>
+
   <link href="default.css" rel="stylesheet" type="text/css" media="all" />
-  <link href="fonts.css" rel="stylesheet" type="text/css" media="all" />
+
+    <link href="animate.css" rel="stylesheet" type="text/css" media="all" />
   <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -18,9 +18,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"
     integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
   <script>
 
     function sendEmail() {
@@ -71,7 +69,7 @@
 </head>
 
 <body style="font-family: 'Indie Flower';font-size: 22px;">
-  <nav class="topbar"
+  <nav class="topbar" id="top"
     style="background: black;padding: 0;margin-bottom: 0.5%;border: 0.5pt gray solid;height:40px;width:100%">
     <p style="margin-left:20%; margin-top:0.5%;color:white;font-family:'Courier New', Courier, monospace">PHONE-NO:
       8220015555 &nbsp;&nbsp;&nbsp;&nbsp; EMAIL: aruvibakerysweets@gmail.com</p>
@@ -113,22 +111,24 @@
     <div class="carousel-inner">
       <div class="carousel-item active">
         <img src="images/SLIDE-IMAGE.jpg" alt="slide cakes" width="1908" height="600">
-        <div class="carousel-caption d-none d-md-block">
-          <h2 class="display-4" style="color:	white">Welcome to ARUVI Bakery </h2>
-          <h3 style="color:	yellow">Get into the heaven of pasteries</h3>
-
+      <div class="carousel-caption">
+          <h2  class="animated fadeInLeftBig" style="color:	white">Welcome to ARUVI Bakery </h2>
+          <h3  class="animated fadeInRightBig" style="color:	yellow">Get into the heaven of pasteries</h3>
         </div>
         <!-- <p class="lead"></p>-->
       </div>
       <div class="carousel-item">
         <img src="images/SLIDE-IMAGE-3.jpg" alt="HappyBirthday" width="1908" height="600">
-        <div class="carousel-caption d-none d-md-block">
-          <h2 class="display-4" style="color:	#FFDEAD;margin-right:100%;margin-bottom:13%">We make custom cakes for
+        <div class="carousel-caption">
+          <h2  class="animated flip" style="color:#FFDEAD;margin-right:100%;margin-bottom:13%">We make custom cakes for
             birthday </h2>
         </div>
       </div>
       <div class="carousel-item">
         <img src="images/tea.jpeg" alt="Cakes" width="1908" height="600">
+        <div class="carousel-caption">
+          <h2  class="animated flip" style="color:#FFDEAD;margin-bottom:13%;margin-right:100%">Experience traditional authentic taste from us...!!</h2>
+        </div>
       </div>
     </div>
     <!-- Left and right controls -->
@@ -140,11 +140,7 @@
     </a>
   </div>
 
-  <div style="text-align:center;margin-top:-90px">
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-  </div>
+
   </div> <br><br><br>
 
   <div class="container container-enhance">
@@ -334,7 +330,9 @@
 
         <!-- Grid column -->
         <div class="col-md-12 py-5" style="margin-left: 45%">
+
           <div class="mb-5 flex-center">
+
 
             <!-- Facebook -->
             <a class="fb-ic">
@@ -351,13 +349,16 @@
           </div>
         </div>
         <!-- Grid column -->
+        <a class="fb-ic" href="#top" style="margin-left:50%;font-size:38px;margin-top:-1%;color:black">
+          <i class="  glyphicon glyphicon-chevron-up" > </i>
+        </a>
 
       </div>
       <!-- Grid row-->
 
     </div>
     <!-- Footer Elements -->
-    y
+
     <!-- Copyright -->
     <div style="margin-left: 40%; margin-top:-5%">© 2019 Copyright:
       <a href="#"> aruvibakerysweets.com</a>
