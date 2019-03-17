@@ -18,7 +18,11 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"
     integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<<<<<<< HEAD
+  <script src="jquery.blockUI.js"></script>
+=======
 
+>>>>>>> 814fb23f5803c80f75a932ccf0d8b6edac315db1
   <script>
 
     function sendEmail() {
@@ -55,8 +59,19 @@
       http.setRequestHeader('Content-type', 'application/json');
 
       http.onreadystatechange = function () {//Call a function when the state changes.
+          $.blockUI({ message: '<h1><img src="images/cakeloading.gif" /> <br>Your mail is being sent..Please wait...</h1>' });
         if (http.readyState == 4 && http.status == 200) {
-          alert('Email Sent.');
+          setTimeout(function(){
+            $.unblockUI({
+                            onUnblock: function(){
+                              alert('Your mail has been sent');
+                              location.reload();
+                            }
+                        });
+          },3000);
+
+          // $(this).unblockUI();
+          // alert('Email Sent.');
         }
       }
       console.log(payload);
@@ -368,6 +383,10 @@
   <!-- Footer -->
 
 </body>
-
+<script>
+$(document).ready(function(){
+$(this).scrollTop(0);
+});
+</script>
 
 </html>
